@@ -5,8 +5,6 @@ class Api::PostsController < ApplicationController
     render json: @posts
   end
 
-end
-
   def new
     @post = Post.new
   end
@@ -41,5 +39,7 @@ end
   private
   
   def post_params
-    params.require(:post).permit(:title, :content,)
+    params.require(:post).permit(:title, :content, :comment)
   end
+
+end
