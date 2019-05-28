@@ -1,3 +1,5 @@
+OLD 
+
 class Api::PostsController < ApplicationController
 
   def index
@@ -39,5 +41,3 @@ end
   def post_params
     params.require(:post).permit(:title, :content, :author)
   end
-
-end
