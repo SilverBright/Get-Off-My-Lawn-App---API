@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 2019_05_28_183150) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
