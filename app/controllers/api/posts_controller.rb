@@ -1,5 +1,3 @@
-OLD 
-
 class Api::PostsController < ApplicationController
 
   def index
@@ -11,6 +9,10 @@ end
 
   def new
     @post = Post.new
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def create
@@ -39,5 +41,5 @@ end
   private
   
   def post_params
-    params.require(:post).permit(:title, :content, :author)
+    params.require(:post).permit(:title, :content, :comment)
   end
