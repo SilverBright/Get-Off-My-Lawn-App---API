@@ -11,6 +11,7 @@ class Api::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    render json: @post
   end
 
   def create
@@ -21,10 +22,6 @@ class Api::PostsController < ApplicationController
     else
       render json: { errors: { message: "your post did not save"}}
     end
-  end
-
-  def show
-    render json Post.find_by(id: params[:id])
   end
 
   def update
