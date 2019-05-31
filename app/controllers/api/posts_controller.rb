@@ -14,7 +14,8 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    # @post = Post.new(post_params)
+    @post = posts.build(post_params)
     if @post.save
       render json: @post
     else
@@ -25,6 +26,11 @@ class Api::PostsController < ApplicationController
   def show
     render json Post.find_by(id: params[:id])
   end
+
+  def update
+		@post.update(post_params)
+	end
+
 
   def destroy
     @post = Post.find_by(id: params[:id])

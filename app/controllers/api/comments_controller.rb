@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :update, :destroy]
+  # before_action :set_comment, only: [:show, :update, :destroy]
 
   # GET /comments
   def index
@@ -10,12 +10,16 @@ class CommentsController < ApplicationController
 
   # GET /comments/1
   def show
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
     render json: @comment
   end
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
+    @post = Post.find(params[:post_id])
+    # @comment = Comment.new(comment_params)
+    @comment = Comments.create(comment: comment_params["comment"], post_id: @post.id)
 
     if @comment.save
       render json: @comment, status: :created, location: @comment
@@ -26,6 +30,8 @@ class CommentsController < ApplicationController
 
   # PATCH/PUT /comments/1
   def update
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       render json: @comment
     else
@@ -35,6 +41,8 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   def destroy
+    # @post = Post.find(params[:post_id])
+    # @comment = Comment.find(params[:id])
     @comment.destroy
   end
 
